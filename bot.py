@@ -14,7 +14,7 @@ class MyClient(discord.Client):
         supportedURL = [
             "www.tiktok.com",
             "vm.tiktok.com",
-            "www.instagram.com"
+            "www.instagram.com",
             "twitter.com",
             "x.com",
             "www.reddit.com",
@@ -26,14 +26,13 @@ class MyClient(discord.Client):
         ]
 
         urls = URLExtract().find_urls(message.content)
-        print(urls)
         if urls:
             url = urlparse(urls[0]).hostname
-            print(url)
             if url in supportedURL:
                 cobalt = requests.post('http://cobalt-api:9000', headers = {"Accept": "application/json", "Content-Type": "application/json"}, json={"url": str(urls[0])})
                 videoUrl = requests.get(json.loads(cobalt.content)['url'])
                 videoToSend = io.BytesIO(videoUrl.content)
+                print(cobalt.content)
                 await message.reply(file=discord.File(videoToSend, 'video.mp4'), mention_author=False)
                 await message.edit(suppress=True)
 
