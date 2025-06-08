@@ -1,0 +1,32 @@
+services:
+    cobalthelper-bot:
+        container_name: bot
+        image: python
+        command: sh -c "cd /app && pip install -r requirements.txt && python3 bot.py"
+        volumes:
+          - ./:/app
+        environment:
+            TOKEN: "PLACE TOKEN HERE"
+    cobalt-api:
+        image: ghcr.io/imputnet/cobalt:10
+        init: true
+        read_only: true
+        restart: unless-stopped
+        container_name: cobalt-api
+        ports:
+            - 9000:9000/tcp
+        volumes:
+            - ./:/media/cobalt
+        environment:
+            API_URL: "http://127.0.0.1:9000"
+            API_AUTH_REQUIRED: false
+        labels:
+            - com.centurylinklabs.watchtower.scope=cobalt
+    # watchtower updates the cobalt image automatically
+    watchtower:
+        image: ghcr.io/containrrr/watchtower
+        restart: unless-stopped
+        command: --cleanup --scope cobalt --interval 900 --include-restarting
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+
