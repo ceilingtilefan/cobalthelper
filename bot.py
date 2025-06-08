@@ -31,7 +31,7 @@ class MyClient(discord.Client):
             url = urlparse(urls[0]).hostname
             print(url)
             if url in supportedURL:
-                cobalt = requests.post('http://192.168.1.5:9000', headers = {"Accept": "application/json", "Content-Type": "application/json"}, json={"url": str(urls[0])})
+                cobalt = requests.post('http://cobalt-api:9000', headers = {"Accept": "application/json", "Content-Type": "application/json"}, json={"url": str(urls[0])})
                 videoUrl = requests.get(json.loads(cobalt.content)['url'])
                 videoToSend = io.BytesIO(videoUrl.content)
                 await message.reply(file=discord.File(videoToSend, 'video.mp4'), mention_author=False)
