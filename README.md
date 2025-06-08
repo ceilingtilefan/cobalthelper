@@ -3,14 +3,23 @@ Save what you love - all in Discord
 
 # supported services
 TikTok
+
 Instagram
+
 Twitter/X
+
 Reddit
-BlueSky
-FaceBook
-SnapChat
+
+Bluesky
+
+Facebook
+
+Snapchat
+
 Tumblr
+
 Twitch Clips
+
 
 # setup
 Requirements:
@@ -20,4 +29,6 @@ Requirements:
 1. Get your bot token and place it in the Docker compose file
 2. Open a terminal in the bot folder and run `docker compose up` (or `docker compose up -d` to run it in the background)
 
--# this project is not affiliated with the imput team nor Discord.
+
+
+this project is not affiliated with the imput team nor Discord.
