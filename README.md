@@ -29,6 +29,8 @@ Requirements:
 1. Get your bot token and place it in the Docker compose file
 2. Open a terminal in the bot folder and run `docker compose up` (or `docker compose up -d` to run it in the background)
 
-
+# credits
+huge thanks to the imput team for creating cobalt. 
+this project is powered by selfhosted cobalt instances
 
 this project is not affiliated with the imput team nor Discord.
